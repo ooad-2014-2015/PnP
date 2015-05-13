@@ -1,0 +1,32 @@
+﻿<Window x:Class="Guess_the_car_logo_Game.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="544.16" Width="555.926">
+    <Grid Margin="0,0,-66,-128" RenderTransformOrigin="0.681,0.419">
+        <Button x:Name="kreirajIgracaButton" Content="Unesi naziv igraca" HorizontalAlignment="Left" Margin="74,386,0,0" VerticalAlignment="Top" Width="140" Height="20" Click="kreirajIgracaButton_Click"/>
+        <Label x:Name="odabirTezineLabel" Content="Odaberite težinu:" HorizontalAlignment="Left" Margin="237,417,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="laganaRadioButton" Content="Lagana" HorizontalAlignment="Left" Margin="343,386,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.351,-0.742" Height="14" Width="71" Checked="laganaRadioButton_Checked"/>
+        <RadioButton x:Name="teskaRadioButton" Content="Teška" HorizontalAlignment="Left" Margin="343,461,0,0" VerticalAlignment="Top" Width="71" Height="29" Checked="teskaRadioButton_Checked"/>
+        <RadioButton x:Name="srednjaRadioButton" Content="Srednja" HorizontalAlignment="Left" Margin="343,423,0,0" VerticalAlignment="Top" Height="26" Width="94" Checked="srednjaRadioButton_Checked"/>
+        <Canvas x:Name="igraCanvas" HorizontalAlignment="Left" Height="332" Margin="40,49,0,0" VerticalAlignment="Top" Width="503" Visibility="Hidden">
+            <Image x:Name="logo1Image1" Height="105" Canvas.Left="37" Source="Audi.png" Stretch="Fill" Canvas.Top="37" Width="117" Tag="Audi" MouseDown="logo1Image1_MouseDown"/>
+            <Image x:Name="logo2Image" Height="105" Canvas.Left="194" Source="Mercedes.png" Stretch="Fill" Canvas.Top="108" Width="117" Tag="Mercedes" MouseDown="logo2Image_MouseDown"/>
+            <Image x:Name="logo3Image" Height="105" Canvas.Left="333" Source="VW.png" Stretch="Fill" Canvas.Top="37" Width="117" Tag="VW" MouseDown="logo3Image_MouseDown"/>
+            <Label x:Name="objasnjenjeLabel" Content="Kliknite na odgovarajući logo:" Canvas.Left="37" Canvas.Top="302" FontSize="14" Background="#FFF9F7F7"/>
+            <Label x:Name="pitanjeLabel" Content="" Canvas.Left="250" Canvas.Top="302" RenderTransformOrigin="0.4,0.423" FontSize="14" Background="#FFF9F7F7"/>
+            <Label x:Name="vrijemeLabel" Content="" Canvas.Left="345" Canvas.Top="11"/>
+            <Label x:Name="vLabel" Content="Vrijeme:" Canvas.Left="275" Canvas.Top="11"/>
+            <Image x:Name="logo4Image" Height="105" Canvas.Left="37" Canvas.Top="175" Width="117" Source="Citroen.png" Stretch="Fill" MouseDown="logo4Image_MouseDown" Tag="Citroen"/>
+            <Image x:Name="logo5Image" Height="105" Canvas.Left="333" Canvas.Top="175" Width="117" Source="Ferrari.png" Stretch="Fill" MouseDown="logo5Image_MouseDown" Tag="Ferrari"/>
+        </Canvas>
+        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="74,411,0,0" VerticalAlignment="Top" Width="140" Height="20" Click="startButton_Click"/>
+        <Label x:Name="rLabel" Content="Rezultat:" HorizontalAlignment="Left" Margin="53,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="rezultatLabel" Content="0" HorizontalAlignment="Left" Margin="181,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="rezultatiButton" Content="Prikazi najbolje rezultate" HorizontalAlignment="Left" Margin="74,436,0,0" VerticalAlignment="Top" Width="140" Click="Button_Click"/>
+        <Label Content="Najbolji rezultat:" HorizontalAlignment="Left" Margin="53,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.817,0.521"/>
+        <Label x:Name="nbrLabel" Content="0" HorizontalAlignment="Left" Margin="181,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.969,0.292"/>
+        <Button Content="Izlaz iz igre" HorizontalAlignment="Left" Margin="74,461,0,0" VerticalAlignment="Top" Width="140" Height="20" Click="Button_Click_1"/>
+        <Label x:Name="tacanLabel" Content="TAČAN ODGOVOR" Margin="274,10,0,0" VerticalAlignment="Top" Width="118" FontWeight="Bold" Background="#FF3EE824" Visibility="Hidden"/>
+
+    </Grid>
+</Window>

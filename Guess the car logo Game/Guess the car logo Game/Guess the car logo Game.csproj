@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9906A8E0-6E65-4E99-97ED-1C7416829AD1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Guess_the_car_logo_Game</RootNamespace>
+    <AssemblyName>Guess the car logo Game</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="IgracWindow.xaml.cs">
+      <DependentUpon>IgracWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IgraFacade.cs" />
+    <Compile Include="RezultatiWindow.xaml.cs">
+      <DependentUpon>RezultatiWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tezina.cs" />
+    <Page Include="IgracWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Igrac.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="RezultatiWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Nivo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Audi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Mercedes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="VW.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Bentley.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Chevrolet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Citroen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ferrari.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fiat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Honda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Hyundai.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Lamborghini.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Lexus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Mazda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Mitsubishi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Opel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Peugeot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Porsche.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Renault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Skoda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Subaru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Suzuki.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Volvo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BMW.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ford.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Daewoo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Austin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Bugatti.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Dacia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Dodge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Jaguar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Jeep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Kia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Lada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Lancia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Land Rover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Lotus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Saab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Tesla.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vespa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Yamaha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Autobacs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Eagle.png" />
+    <Resource Include="Elfin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Franklin.png" />
+    <Resource Include="Gaz.png" />
+    <Resource Include="Hillman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Jawa.png" />
+    <Resource Include="LDV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Liaz.png" />
+    <Resource Include="Lincoln.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Piaggio.png" />
+    <Resource Include="Proton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Rolls Royce.png" />
+    <Resource Include="Rover.png" />
+    <Resource Include="Seat.png" />
+    <Resource Include="Veritas.png" />
+    <Resource Include="Yugo.png" />
+    <Resource Include="Zastava.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

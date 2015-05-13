@@ -1,0 +1,15 @@
+﻿<Window x:Class="Guess_the_car_logo_Game.IgracWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="IgracWindow" Height="300" Width="300">
+    <Grid Margin="0,10,22.6,35.4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="179*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="nazivIgracaLabel" Content="Unesite naziv:" HorizontalAlignment="Left" Margin="40,104,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Button x:Name="potvrdiUnosButton" Content="Potvrdi" HorizontalAlignment="Left" Margin="106,180,0,0" VerticalAlignment="Top" Width="75" Click="potvrdiUnosButton_Click" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="nazivIgracaTextBox" HorizontalAlignment="Left" Height="23" Margin="27.903,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+
+    </Grid>
+</Window>

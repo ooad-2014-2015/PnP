@@ -1,0 +1,13 @@
+﻿<Window x:Class="Guess_the_car_logo_Game.RezultatiWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RezultatiWindow" Height="300" Width="300">
+    <Grid Margin="0,0,-0.4,79.4">
+        <Label x:Name="prviLabel" Content="1." HorizontalAlignment="Left" Margin="50,23,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="drugiLabel" Content="2." HorizontalAlignment="Left" Margin="50,54,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="treciLabel" Content="3." HorizontalAlignment="Left" Margin="50,85,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="cetvrtiLabel" Content="4." HorizontalAlignment="Left" Margin="50,116,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="petiLabel" Content="5." HorizontalAlignment="Left" Margin="50,147,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
