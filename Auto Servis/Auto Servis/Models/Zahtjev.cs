@@ -24,6 +24,13 @@ namespace Auto_Servis.Models
             set { datumPrijema = value; }
         }
 
+        Vozilo vozilo;
+        internal Vozilo Vozilo
+        {
+            get { return vozilo; }
+            set { vozilo = value; }
+        }
+
         public Zahtjev() { }
     }
 }

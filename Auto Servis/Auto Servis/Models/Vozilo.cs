@@ -2,38 +2,63 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Auto_Servis.Models
 {
-    public class Vozilo
+    public class Vozilo : INotifyPropertyChanged
     {
-        private string brojTablica;
+        public Vozilo()
+        {
 
+        }
+
+        private string brojTablica;
         public string BrojTablica
         {
             get { return brojTablica; }
-            set { brojTablica = value; }
+            set { brojTablica = value; OnPropertyChanged("BrojTablica"); }
         }
 
-        enum Proizvodjaci { Volkswagen, Audi, Skoda, Seat };
-
+        public enum Proizvodjaci
+        {
+            Volkswagen,
+            Audi,
+            Skoda,
+            Seat,
+        };
         private Proizvodjaci proizvodjac;
 
-        private Proizvodjaci Proizvodjac
+        public Proizvodjaci Proizvodjac
         {
             get { return proizvodjac; }
-            set { proizvodjac = value; }
+            set { proizvodjac = value; OnPropertyChanged("Proizvodjac"); }
         }
 
-        private DateTime godinaProizvodnje;
 
+        private DateTime godinaProizvodnje;
         public DateTime GodinaProizvodnje
         {
             get { return godinaProizvodnje; }
-            set { godinaProizvodnje = value; }
+            set { godinaProizvodnje = value; OnPropertyChanged("GodinaProizvodnje"); }
         }
 
-        public Vozilo() { }
+        Zahtjev zahtjev;
+        internal Zahtjev Zahtjev
+        {
+            get { return zahtjev; }
+            set { zahtjev = value; OnPropertyChanged("Zahtjev"); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }

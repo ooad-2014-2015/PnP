@@ -12,22 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Auto_Servis
+namespace Auto_Servis.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for FormaVozilo.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FormaVozilo : Window
     {
-        public MainWindow()
+        public FormaVozilo()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var f = new Auto_Servis.View.FormaVozilo();
-            f.Show();
         }
     }
 }

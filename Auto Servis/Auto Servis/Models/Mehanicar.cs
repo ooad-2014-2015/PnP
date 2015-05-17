@@ -42,6 +42,13 @@ namespace Auto_Servis.Models
             set { tip = value; }
         }
 
+        Popravka popravka;
+        internal Popravka Popravka
+        {
+            get { return popravka; }
+            set { popravka = value; }
+        }
+
         public Mehanicar() { }
     }
 }

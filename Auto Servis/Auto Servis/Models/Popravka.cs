@@ -2,38 +2,63 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Auto_Servis.Models
 {
-    public class Popravka
+    public class Popravka : INotifyPropertyChanged
     {
-        private int id;
+        public Popravka()
+        {
 
+        }
+
+        private int id;
         public int Id
         {
             get { return id; }
-            set { id = value; }
+            set { id = value; OnPropertyChanged("Id"); }
         }
 
-        private double cijena;
-
-        public double Cijena
+        private float cijena;
+        public float Cijena
         {
             get { return cijena; }
-            set { cijena = value; }
+            set { cijena = value; OnPropertyChanged("Cijena"); }
         }
 
-        enum TipoviPopravki { elektronicka, limarijska, redovnoOdrzavanje, mehanicka, velikiServis };
+        public enum TipoviPopravki
+        {
+            Elektronicka,
+            limarijska,
+            RedovnoOdrzavanje,
+            Mehanicka,
+            VelikiServis,
+        };
 
         private TipoviPopravki tipPopravke;
-
-        private TipoviPopravki TipPopravke
+        public TipoviPopravki TipPopravke
         {
             get { return tipPopravke; }
-            set { tipPopravke = value; }
+            set { tipPopravke = value; OnPropertyChanged("TipPopravke"); }
         }
 
-        public Popravka() { }
+        Mehanicar mehanicar;
+        internal Mehanicar Mehanicar
+        {
+            get { return mehanicar; }
+            set { mehanicar = value; OnPropertyChanged("Mehanicar"); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }

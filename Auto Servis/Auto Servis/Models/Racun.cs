@@ -32,6 +32,18 @@ namespace Auto_Servis.Models
             set { datumIzdavanja = value; }
         }
 
+        Izvjestaj izvjestaj;
+        internal Izvjestaj Izvjestaj
+        {
+            get { return izvjestaj; }
+            set { izvjestaj = value; }
+        }
+
+        public void isprintaj()
+        {
+            // treba implementirati
+        }
+
         public Racun() { }
     }
 }
