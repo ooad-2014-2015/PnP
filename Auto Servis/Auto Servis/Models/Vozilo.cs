@@ -15,6 +15,15 @@ namespace Auto_Servis.Models
 
         }
 
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+
+
         private string brojTablica;
         public string BrojTablica
         {
@@ -29,7 +38,7 @@ namespace Auto_Servis.Models
             Skoda,
             Seat,
         };
-        private Proizvodjaci proizvodjac;
+        public Proizvodjaci proizvodjac;
 
         public Proizvodjaci Proizvodjac
         {

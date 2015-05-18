@@ -35,8 +35,8 @@ namespace Auto_Servis.Models
             set { adresa = value; OnPropertyChanged("Adresa"); }
         }
 
-        private string brojTelefona;
-        public string BrojTelefona
+        private int brojTelefona;
+        public int BrojTelefona
         {
             get { return brojTelefona; }
             set { brojTelefona = value; OnPropertyChanged("BrojTelefona"); }

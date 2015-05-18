@@ -29,8 +29,8 @@ namespace Auto_Servis.Models
             set { id = value; OnPropertyChanged("Id"); }
         }
 
-        private float cijena;
-        public float Cijena
+        private double cijena;
+        public double Cijena
         {
             get { return cijena; }
             set { cijena = value; OnPropertyChanged("Cijena"); }

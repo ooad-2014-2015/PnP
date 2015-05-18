@@ -32,11 +32,11 @@ namespace Auto_Servis.Models
             set { prezime = value; }
         }
 
-        enum TipoviMehanicara { elektricar, limar, serviser, lakirer };
+        public enum TipoviMehanicara { elektricar, limar, serviser, lakirer };
 
-        private TipoviMehanicara tip;
+        public TipoviMehanicara tip;
 
-        private TipoviMehanicara Tip
+        public TipoviMehanicara Tip
         {
             get { return tip; }
             set { tip = value; }
