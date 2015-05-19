@@ -24,5 +24,10 @@ namespace Auto_Servis.View
             InitializeComponent();
             DataContext = new ViewModel.VoziloViewModel();
         }
+
+        private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

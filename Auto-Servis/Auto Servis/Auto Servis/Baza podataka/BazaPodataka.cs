@@ -191,10 +191,10 @@ namespace Auto_Servis.Baza_podataka
                 connect();
                 MySqlCommand insertUpit = new MySqlCommand();
                 insertUpit.Connection = connection;
-                insertUpit.CommandText = "insert into vozila values (@id,@brojTablica,@Proizvodjac,@godinaProizvodnje)";
+                insertUpit.CommandText = "insert into vozila values (@id,@brojTablica,@godinaProizvodnje,@proizvodjac)";
                 insertUpit.Parameters.AddWithValue("@id", @v.Id);
                 insertUpit.Parameters.AddWithValue("@brojTablica", @v.BrojTablica);
-                insertUpit.Parameters.AddWithValue("@Proizvodjac", @v.Proizvodjac);
+                insertUpit.Parameters.AddWithValue("@proizvodjac", @v.Proizvodjac);
                 insertUpit.Parameters.AddWithValue("@godinaProizvodnje", @v.GodinaProizvodnje);
                 insertUpit.ExecuteNonQuery();
                 return true;
@@ -427,6 +427,35 @@ namespace Auto_Servis.Baza_podataka
                 racuni.Clear();
                 connection.Close();
                 return racuni;
+            }
+        }
+
+        public List<Models.Vozilo> dajVozila()
+        {
+            List<Models.Vozilo> vozila = new List<Models.Vozilo>();
+            try
+            {
+                connect();
+                MySqlCommand selectUpit = new MySqlCommand();
+                selectUpit.Connection = connection;
+                selectUpit.CommandText = "select * from vozila";
+                MySqlDataReader r = selectUpit.ExecuteReader();
+                while (r.Read())
+                {
+                    Models.Vozilo v = new Models.Vozilo();
+                    v.Id = r.GetInt32("id");
+                    v.BrojTablica = r.GetString("brojTablica");
+                    v.Proizvodjac = r.GetString("proizvodjac");
+                    v.GodinaProizvodnje = r.GetDateTime("godinaPRoizvodnje");
+                    vozila.Add(v);
+                }
+                return vozila;
+            }
+            catch (Exception)
+            {
+                vozila.Clear();
+                connection.Close();
+                return vozila;
             }
         }
 

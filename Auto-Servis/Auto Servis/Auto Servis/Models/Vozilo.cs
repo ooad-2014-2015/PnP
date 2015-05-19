@@ -12,7 +12,11 @@ namespace Auto_Servis.Models
     {
         public Vozilo()
         {
-
+            proizvodjaci = new List<string>();
+            proizvodjaci.Add("Volkswagen");
+            proizvodjaci.Add("Audi");
+            proizvodjaci.Add("Skoda");
+            proizvodjaci.Add("Seat");
         }
 
         private int id;
@@ -22,8 +26,6 @@ namespace Auto_Servis.Models
             set { id = value; }
         }
 
-
-
         private string brojTablica;
         public string BrojTablica
         {
@@ -31,21 +33,21 @@ namespace Auto_Servis.Models
             set { brojTablica = value; OnPropertyChanged("BrojTablica"); }
         }
 
-        public enum Proizvodjaci
-        {
-            Volkswagen,
-            Audi,
-            Skoda,
-            Seat,
-        };
-        public Proizvodjaci proizvodjac;
+        private List<string> proizvodjaci;
 
-        public Proizvodjaci Proizvodjac
+        public List<string> Proizvodjaci
+        {
+            get { return proizvodjaci; }
+            set { proizvodjaci = value; }
+        }
+
+        private string proizvodjac;
+
+        public string Proizvodjac
         {
             get { return proizvodjac; }
             set { proizvodjac = value; OnPropertyChanged("Proizvodjac"); }
         }
-
 
         private DateTime godinaProizvodnje;
         public DateTime GodinaProizvodnje
