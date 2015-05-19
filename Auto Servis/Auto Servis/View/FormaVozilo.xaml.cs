@@ -22,6 +22,7 @@ namespace Auto_Servis.View
         public FormaVozilo()
         {
             InitializeComponent();
+            DataContext = new ViewModel.VoziloViewModel();
         }
     }
 }

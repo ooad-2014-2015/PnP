@@ -13,7 +13,7 @@ namespace Auto_Servis.ViewModel
     {
         public ICommand OdabirVozila { get; set; }
         public ICommand DodajVozilo { get; set; }
-        public Action closeAction { get; set; }
+        public Action CloseAction { get; set; }
 
         private Vozilo vozilo;
         public Vozilo Vozilo
@@ -29,8 +29,9 @@ namespace Auto_Servis.ViewModel
         }
         public void dodajVozilo(object parametar)
         {
-              // dio koda koji dodaje vozilo u bazu
-            closeAction();
+            Baza_podataka.BazaPodataka bp = new Baza_podataka.BazaPodataka();
+            bp.unesiVozilo(vozilo);
+            //CloseAction(); ovo nesto nece da radi
         }
     }
 }
