@@ -29,5 +29,11 @@ namespace Auto_Servis
             var f = new Auto_Servis.View.FormaVozilo();
             f.Show();
         }
+
+        private void klijentButton_Click(object sender, RoutedEventArgs e)
+        {
+            var f = new Auto_Servis.View.FormaKlijent();
+            f.Show();
+        }
     }
 }

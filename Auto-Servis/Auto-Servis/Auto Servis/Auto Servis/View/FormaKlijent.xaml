@@ -1,0 +1,49 @@
+﻿<Window x:Class="Auto_Servis.View.FormaKlijent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FormaKlijent" Height="351.8" Width="438.4">
+    <Grid Margin="0,0,3.4,0">
+        <TabControl HorizontalAlignment="Left" Height="322" VerticalAlignment="Top" Width="429" Margin="0,0,-0.4,0">
+            <TabItem Header="Unos">
+                <Grid Background="#FFE5E5E5">
+                    <Grid HorizontalAlignment="Left" Height="261" Margin="10,10,0,0" VerticalAlignment="Top" Width="190" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+                        <Label Content="Ime:" HorizontalAlignment="Left" Margin="55,26,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.354,-0.187"/>
+                        <Label Content="Prezime:" HorizontalAlignment="Left" Margin="33,65,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Adresa:" HorizontalAlignment="Left" Margin="38,109,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Broj telefona:" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top"/>
+                        <Button Content="Unesi" HorizontalAlignment="Left" Margin="98,232,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.373,0.083" Command="{Binding UnosPrivatnogLica}"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="98,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" Text="{Binding PL.Ime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="98,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" Text="{Binding PL.Prezime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="98,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" Text="{Binding PL.Adresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="98,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" Text="{Binding PL.BrojTelefona, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="Unos privatnog lica:" HorizontalAlignment="Left" Margin="8,0,0,0" VerticalAlignment="Top"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Left" Height="261" Margin="215,10,0,0" VerticalAlignment="Top" Width="190" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+                        <Label Content="Ime:" HorizontalAlignment="Left" Margin="55,26,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.354,-0.187"/>
+                        <Label Content="Prezime:" HorizontalAlignment="Left" Margin="33,65,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Adresa:" HorizontalAlignment="Left" Margin="38,109,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Broj telefona:" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top"/>
+                        <Button Content="Unesi" HorizontalAlignment="Left" Margin="98,232,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.373,0.083" Command="{Binding UnosSluzbenogLica}"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="98,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" Text="{Binding SL.Ime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="98,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" Text="{Binding SL.Prezime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="98,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" Text="{Binding SL.Adresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="98,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" Text="{Binding SL.BrojTelefona, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="Unos službenog lica:" HorizontalAlignment="Left" Margin="8,0,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Naziv firme:" HorizontalAlignment="Left" Margin="18,191,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="98,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" RenderTransformOrigin="0.64,0.243" Text="{Binding SL.NazivFirme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Pregled">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox Name="PLListBox" HorizontalAlignment="Left" Height="212" Margin="27,29,0,0" VerticalAlignment="Top" Width="166" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" SelectedItem="{Binding selektovanoPL}"/>
+                    <Label Content="Privatna lica:" HorizontalAlignment="Left" Margin="27,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.188,-0.312"/>
+                    <Button Content="Obriši" HorizontalAlignment="Left" Margin="60,255,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.395,-0.542" Command="{Binding BrisanjePrivatnogLica}"/>
+                    <Label Content="Službena lica:" HorizontalAlignment="Left" Margin="238,3,0,0" VerticalAlignment="Top"/>
+                    <ListBox Name="SLListBox" HorizontalAlignment="Left" Height="212" Margin="238,29,0,0" VerticalAlignment="Top" Width="166" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" SelectedItem="{Binding selektovanoSL}"/>
+                    <Button Content="Obriši" HorizontalAlignment="Left" Margin="274,255,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.395,-0.542" Command="{Binding BrisanjeSluzbenogLica}"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

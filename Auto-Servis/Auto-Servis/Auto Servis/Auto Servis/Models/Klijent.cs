@@ -14,6 +14,7 @@ namespace Auto_Servis.Models
         {
 
         }
+
         private string ime;
         public string Ime
         {
@@ -42,18 +43,9 @@ namespace Auto_Servis.Models
             set { brojTelefona = value; OnPropertyChanged("BrojTelefona"); }
         }
 
-        Vozilo vozilo;
-        internal Vozilo Vozilo
+        public override string ToString()
         {
-            get { return vozilo; }
-            set { vozilo = value; OnPropertyChanged("Vozilo"); }
-        }
-
-        Zahtjev zahtjev;
-        internal Zahtjev Zahtjev
-        {
-            get { return zahtjev; }
-            set { zahtjev = value; OnPropertyChanged("Zahtjev"); }
+            return ime + " " + prezime; 
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

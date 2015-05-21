@@ -28,7 +28,8 @@ namespace Auto_Servis.View
             InitializeComponent();
             VoziloViewModel vViewModel = new VoziloViewModel();
             DataContext = vViewModel;
-            listBox.DataContext = vViewModel.Vozila;
+            listBox.DataContext = vViewModel;
+            listBox.SetBinding(ItemsControl.ItemsSourceProperty, new Binding("Vozila"));
         }
 
         private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)

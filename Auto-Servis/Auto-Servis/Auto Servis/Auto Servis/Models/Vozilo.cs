@@ -23,7 +23,7 @@ namespace Auto_Servis.Models
         public int Id
         {
             get { return id; }
-            set { id = value; }
+            set { id = value; OnPropertyChanged("Id"); }
         }
 
         private string brojTablica;
@@ -68,7 +68,7 @@ namespace Auto_Servis.Models
         public Klijent Vlasnik
         {
             get { return vlasnik; }
-            set { vlasnik = value; }
+            set { vlasnik = value; OnPropertyChanged("Vlasnik"); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

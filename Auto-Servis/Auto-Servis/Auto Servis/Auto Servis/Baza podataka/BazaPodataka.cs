@@ -229,9 +229,9 @@ namespace Auto_Servis.Baza_podataka
 
         //Liste
 
-        public List<Models.Dio> dajDijelove()
+        public ObservableCollection<Models.Dio> dajDijelove()
         {
-            List<Models.Dio> dijelovi = new List<Models.Dio>();
+            ObservableCollection<Models.Dio> dijelovi = new ObservableCollection<Models.Dio>();
             try
             {
                 connect();
@@ -258,9 +258,9 @@ namespace Auto_Servis.Baza_podataka
             }
         }
 
-        public List<Models.Izvjestaj> dajIzvjestaje()
+        public ObservableCollection<Models.Izvjestaj> dajIzvjestaje()
         {
-            List<Models.Izvjestaj> izvjestaji = new List<Models.Izvjestaj>();
+            ObservableCollection<Models.Izvjestaj> izvjestaji = new ObservableCollection<Models.Izvjestaj>();
             try
             {
                 connect();
@@ -285,9 +285,9 @@ namespace Auto_Servis.Baza_podataka
             }
         }
 
-        public List<Models.PrivatnoLice> dajPrivatnaLica()
+        public ObservableCollection<Models.PrivatnoLice> dajPrivatnaLica()
         {
-            List<Models.PrivatnoLice> privatnaLica = new List<Models.PrivatnoLice>();
+            ObservableCollection<Models.PrivatnoLice> privatnaLica = new ObservableCollection<Models.PrivatnoLice>();
             try
             {
                 connect();
@@ -315,9 +315,9 @@ namespace Auto_Servis.Baza_podataka
             }
         }
 
-        public List<Models.SluzbenoLice> dajSluzbenaLica()
+        public ObservableCollection<Models.SluzbenoLice> dajSluzbenaLica()
         {
-            List<Models.SluzbenoLice> sluzbenaLica = new List<Models.SluzbenoLice>();
+            ObservableCollection<Models.SluzbenoLice> sluzbenaLica = new ObservableCollection<Models.SluzbenoLice>();
             try
             {
                 connect();
@@ -346,9 +346,9 @@ namespace Auto_Servis.Baza_podataka
             }
         }
 
-        public List<Models.Mehanicar> dajMehanicare()
+        public ObservableCollection<Models.Mehanicar> dajMehanicare()
         {
-            List<Models.Mehanicar> mehanicari = new List<Models.Mehanicar>();
+            ObservableCollection<Models.Mehanicar> mehanicari = new ObservableCollection<Models.Mehanicar>();
             try
             {
                 connect();
@@ -375,9 +375,9 @@ namespace Auto_Servis.Baza_podataka
             }
         }
 
-        public List<Models.Popravka> dajPopravke()
+        public ObservableCollection<Models.Popravka> dajPopravke()
         {
-            List<Models.Popravka> popravke = new List<Models.Popravka>();
+            ObservableCollection<Models.Popravka> popravke = new ObservableCollection<Models.Popravka>();
             try
             {
                 connect();
@@ -403,9 +403,9 @@ namespace Auto_Servis.Baza_podataka
             }
         }
 
-        public List<Models.Racun> dajRacune()
+        public ObservableCollection<Models.Racun> dajRacune()
         {
-            List<Models.Racun> racuni = new List<Models.Racun>();
+            ObservableCollection<Models.Racun> racuni = new ObservableCollection<Models.Racun>();
             try
             {
                 connect();
@@ -460,9 +460,9 @@ namespace Auto_Servis.Baza_podataka
             }
         }
 
-        public List<Models.Zahtjev> dajZahtjeve()
+        public ObservableCollection<Models.Zahtjev> dajZahtjeve()
         {
-            List<Models.Zahtjev> zahtjevi = new List<Models.Zahtjev>();
+            ObservableCollection<Models.Zahtjev> zahtjevi = new ObservableCollection<Models.Zahtjev>();
             try
             {
                 connect();

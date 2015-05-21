@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace Auto_Servis.Models
 {
-    public class SluzbenoLice : Klijent
+    public class SluzbenoLice : Klijent, INotifyPropertyChanged
     {
         private string nazivFirme;
         public string NazivFirme
@@ -20,6 +22,11 @@ namespace Auto_Servis.Models
         {
             get { return idFirme; }
             set { idFirme = value; OnPropertyChanged("IdFirme"); }
+        }
+
+        public override string ToString()
+        {
+            return idFirme + " " + nazivFirme + " " + base.ToString();
         }
 
         public SluzbenoLice() : base() { }
