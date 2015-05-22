@@ -9,7 +9,6 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows;
-using Auto_Servis.Baza_podataka;
 
 namespace Auto_Servis.ViewModel
 {

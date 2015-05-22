@@ -192,11 +192,15 @@ namespace Auto_Servis.Baza_podataka
                 connect();
                 MySqlCommand insertUpit = new MySqlCommand();
                 insertUpit.Connection = connection;
-                insertUpit.CommandText = "insert into vozila values (@id,@brojTablica,@godinaProizvodnje,@proizvodjac)";
+                insertUpit.CommandText = "insert into vozila values (@id,@brojTablica,@godinaProizvodnje,@proizvodjac,@vlasnik_privatni_id,@vlasnik_sluzbeni_id)";
                 insertUpit.Parameters.AddWithValue("@id", @v.Id);
                 insertUpit.Parameters.AddWithValue("@brojTablica", @v.BrojTablica);
                 insertUpit.Parameters.AddWithValue("@proizvodjac", @v.Proizvodjac);
                 insertUpit.Parameters.AddWithValue("@godinaProizvodnje", @v.GodinaProizvodnje);
+                if(v.VlasnikPrivatni == null) insertUpit.Parameters.AddWithValue("@vlasnik_privatni_id", null);
+                else insertUpit.Parameters.AddWithValue("@vlasnik_privatni_id", @v.VlasnikPrivatni.Id);
+                if(v.VlasnikSluzbeni == null) insertUpit.Parameters.AddWithValue("@vlasnik_sluzbeni_id", null);
+                else insertUpit.Parameters.AddWithValue("@vlasnik_sluzbeni_id", @v.VlasnikSluzbeni.IdFirme);
                 insertUpit.ExecuteNonQuery();
                 return true;
             }
@@ -441,13 +445,39 @@ namespace Auto_Servis.Baza_podataka
                 selectUpit.Connection = connection;
                 selectUpit.CommandText = "select * from vozila";
                 MySqlDataReader r = selectUpit.ExecuteReader();
+                ObservableCollection<Models.PrivatnoLice> pLica = this.dajPrivatnaLica();
+                ObservableCollection<Models.SluzbenoLice> sLica = this.dajSluzbenaLica();
                 while (r.Read())
                 {
                     Models.Vozilo v = new Models.Vozilo();
                     v.Id = r.GetInt32("id");
                     v.BrojTablica = r.GetString("brojTablica");
                     v.Proizvodjac = r.GetString("proizvodjac");
-                    v.GodinaProizvodnje = r.GetDateTime("godinaPRoizvodnje");
+                    v.GodinaProizvodnje = r.GetDateTime("godinaProizvodnje");
+                    foreach (Models.PrivatnoLice pl in pLica)
+                    {
+                        if (!r.IsDBNull(r.GetOrdinal("vlasnik_privatni_id")))
+                        {
+                            if (pl.Id == Convert.ToInt32(r["vlasnik_privatni_id"]))
+                            {
+                                v.VlasnikPrivatni = pl; break;
+                            }
+                            else v.VlasnikPrivatni = null;
+                        }
+                        else continue;
+                    }
+                    foreach (Models.SluzbenoLice sl in sLica)
+                    {
+                        if (!r.IsDBNull(r.GetOrdinal("vlasnik_sluzbeni_id")))
+                        {
+                            if (sl.IdFirme == Convert.ToInt32(r["vlasnik_sluzbeni_id"]))
+                            {
+                                v.VlasnikSluzbeni = sl; break;
+                            }
+                            else v.VlasnikSluzbeni = null;
+                        }
+                        else continue;
+                    }
                     vozila.Add(v);
                 }
                 return vozila;

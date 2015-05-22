@@ -36,11 +36,11 @@
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="150.2,34,0,0" TextWrapping="Wrap" Text="{Binding Vozilo.BrojTablica, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="186" RenderTransformOrigin="0.308,1.391" Grid.Column="1" Grid.ColumnSpan="2"/>
                         <ComboBox HorizontalAlignment="Left" Margin="150.2,82,0,0" VerticalAlignment="Top" Width="186" ItemsSource="{Binding Vozilo.Proizvodjaci}"  SelectedValue="{Binding Vozilo.Proizvodjac}" Grid.Column="1" Grid.ColumnSpan="2" Height="22"/>
                         <Label Content="Vlasnik:" Grid.Column="1" HorizontalAlignment="Left" Margin="90,230,0,0" VerticalAlignment="Top"/>
-                        <ComboBox Name="PrivatniComboBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="150,230,0,0" VerticalAlignment="Top" Width="186" Visibility="{Binding IsChecked,ElementName=PLRadioButton,Converter={StaticResource b2v}}" ItemsSource="{Binding VlasniciPrivatni}" DisplayMemberPath="Id" />
+                        <ComboBox Name="PrivatniComboBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="150,230,0,0" VerticalAlignment="Top" Width="186" Visibility="{Binding IsChecked,ElementName=PLRadioButton,Converter={StaticResource b2v}}" ItemsSource="{Binding VlasniciPrivatni}" DisplayMemberPath="Id" SelectedValue="{Binding Vozilo.VlasnikPrivatni}"/>
                         <RadioButton Name="PLRadioButton" Content="Privatno Lice" Grid.Column="1" HorizontalAlignment="Left" Margin="153,189,0,0" VerticalAlignment="Top" />
                         <RadioButton Name="SLRadioButton" Grid.ColumnSpan="2" Content="Službeno Lice" Grid.Column="1" HorizontalAlignment="Left" Margin="245,189,0,0" VerticalAlignment="Top"/>
                         <Label Content="Tip Vlasnika:" Grid.Column="1" HorizontalAlignment="Left" Margin="64,183,0,0" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="SluzbeniComboBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="150,230,0,0" VerticalAlignment="Top" Width="186" Visibility="{Binding IsChecked,ElementName=SLRadioButton,Converter={StaticResource b2v}}" ItemsSource="{Binding VlasniciSluzbeni}" DisplayMemberPath="IdFirme" />
+                        <ComboBox x:Name="SluzbeniComboBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="150,230,0,0" VerticalAlignment="Top" Width="186" Visibility="{Binding IsChecked,ElementName=SLRadioButton,Converter={StaticResource b2v}}" ItemsSource="{Binding VlasniciSluzbeni}" DisplayMemberPath="IdFirme" SelectedValue="{Binding Vozilo.VlasnikSluzbeni}"/>
                     </Grid>
                 </Grid>
             </TabItem>

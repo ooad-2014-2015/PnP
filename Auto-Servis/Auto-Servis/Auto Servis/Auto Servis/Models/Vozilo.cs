@@ -63,12 +63,18 @@ namespace Auto_Servis.Models
             set { zahtjev = value; OnPropertyChanged("Zahtjev"); }
         }
 
-        private Klijent vlasnik;
-
-        public Klijent Vlasnik
+        private PrivatnoLice vlasnikPrivatni;
+        public PrivatnoLice VlasnikPrivatni
         {
-            get { return vlasnik; }
-            set { vlasnik = value; OnPropertyChanged("Vlasnik"); }
+            get { return vlasnikPrivatni; }
+            set { vlasnikPrivatni = value; OnPropertyChanged("VlasnikPrivatni"); }
+        }
+
+        private SluzbenoLice vlasnikSluzbeni;
+        public SluzbenoLice VlasnikSluzbeni
+        {
+            get { return vlasnikSluzbeni; }
+            set { vlasnikSluzbeni = value; OnPropertyChanged("VlasnikSluzbeni"); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -82,7 +88,10 @@ namespace Auto_Servis.Models
 
         public override string ToString()
         {
-            return id + " " + brojTablica + " " + proizvodjac + " " + godinaProizvodnje.Year.ToString();
+            string vrati = id + " " + brojTablica + " " + proizvodjac + " " + godinaProizvodnje.Year.ToString() + " ";
+            if (vlasnikPrivatni != null) { vrati += "Vlasnik:Privatno lice "; vrati += vlasnikPrivatni.ToString(); }
+            else { vrati += "Vlasnik:Sluzbeno lice "; vrati += vlasnikSluzbeni.ToString(); }
+            return vrati;
         }
     }
 }
