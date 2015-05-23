@@ -4,9 +4,10 @@
         Title="MainWindow" Height="300" Width="300">
     <Grid>
         <Button Content="Vozilo" HorizontalAlignment="Left" Margin="68,41,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Image Margin="168,25,81.6,199.4" Source="Car.png" Stretch="Fill"/>
+        <Image Margin="168,26,81.6,198.4" Source="Car.png" Stretch="Fill"/>
         <Button Name="klijentButton" Content="Klijent" HorizontalAlignment="Left" Margin="68,94,0,0" VerticalAlignment="Top" Width="75" Click="klijentButton_Click"/>
-        <Image Margin="168,85,81.6,147.4" Source="Client.png" Stretch="Fill"/>
-
+        <Image Margin="168,77,81.6,147.4" Source="Client.png" Stretch="Fill" RenderTransformOrigin="0.036,1.796"/>
+        <Button Name ="popravkaButton" Content="Popravka" HorizontalAlignment="Left" Margin="68,145,0,0" VerticalAlignment="Top" Width="75" Click="popravkaButton_Click"/>
+        <Image Margin="168,136,81.6,96.4" Source="Wrench.png" Stretch="Fill"/>
     </Grid>
 </Window>

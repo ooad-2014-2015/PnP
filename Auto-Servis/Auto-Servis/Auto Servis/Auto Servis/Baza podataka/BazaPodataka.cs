@@ -150,10 +150,14 @@ namespace Auto_Servis.Baza_podataka
                 connect();
                 MySqlCommand insertUpit = new MySqlCommand();
                 insertUpit.Connection = connection;
-                insertUpit.CommandText = "insert into popravke values (@id,@cijena,@tipPopravke)";
+                insertUpit.CommandText = "insert into popravke values (@id,@cijena,@tipPopravke,@datumPrijemaZahtjeva,@vozilo_id,@dijelovi,@datumZavrsetka)";
                 insertUpit.Parameters.AddWithValue("@id", @p.Id);
                 insertUpit.Parameters.AddWithValue("@cijena", @p.Cijena);
                 insertUpit.Parameters.AddWithValue("@tipPopravke", @p.TipPopravke);
+                insertUpit.Parameters.AddWithValue("@datumPrijemaZahtjeva", @p.DatumPrijemaZahtjeva);
+                insertUpit.Parameters.AddWithValue("@vozilo_id", @p.Vozilo.Id);
+                insertUpit.Parameters.AddWithValue("@dijelovi", @p.Parts);
+                insertUpit.Parameters.AddWithValue("@datumZavrsetka", DateTime.Now);
                 insertUpit.ExecuteNonQuery();
                 return true;
             }
@@ -384,6 +388,7 @@ namespace Auto_Servis.Baza_podataka
             ObservableCollection<Models.Popravka> popravke = new ObservableCollection<Models.Popravka>();
             try
             {
+                ObservableCollection<Models.Vozilo> vozila = this.dajVozila();
                 connect();
                 MySqlCommand selectUpit = new MySqlCommand();
                 selectUpit.Connection = connection;
@@ -394,7 +399,22 @@ namespace Auto_Servis.Baza_podataka
                     Models.Popravka p = new Models.Popravka();
                     p.Id = r.GetInt32("id");
                     p.Cijena = r.GetDouble("cijena");
-                    //p.TipPopravke = (Models.Popravka.TipoviPopravki)r.GetInt32("tipPopravke");
+                    p.TipPopravke = r.GetString("tipPopravke");
+                    p.DatumPrijemaZahtjeva = r.GetDateTime("datumPrijemaZahtjeva");
+                    foreach (Models.Vozilo v in vozila)
+                    {
+                        if (!r.IsDBNull(r.GetOrdinal("vozilo_id")))
+                        {
+                            if (v.Id == Convert.ToInt32(r["vozilo_id"]))
+                            {
+                                p.Vozilo = v; break;
+                            }
+                            else p.Vozilo = null;
+                        }
+                        else continue;
+                    }
+                    p.Parts = r.GetString("dijelovi");
+                    p.DatumZavrsetkaRadova = r.GetDateTime("datumZavrsetka");
                     popravke.Add(p);
                 }
                 return popravke;

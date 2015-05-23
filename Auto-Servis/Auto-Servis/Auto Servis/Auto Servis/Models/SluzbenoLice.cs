@@ -29,6 +29,14 @@ namespace Auto_Servis.Models
             return idFirme + " " + nazivFirme + " " + base.ToString();
         }
 
+        private string prikaz;
+
+        public string Prikaz
+        {
+            get { return ToString(); }
+            set { prikaz = value; OnPropertyChanged("Prikaz"); }
+        }
+
         public SluzbenoLice() : base() { }
     }
 }

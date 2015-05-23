@@ -54,7 +54,6 @@ namespace Auto_Servis.ViewModel
             set { vlasniciSluzbeni = value; OnPropertyChanged("VlasniciSluzbeni"); }
         }
 
-
         public VoziloViewModel()
         {
             vozilo = new Vozilo();
@@ -73,8 +72,11 @@ namespace Auto_Servis.ViewModel
         public void dodajVozilo(object parametar)
         {
             Baza_podataka.BazaPodataka bp = new Baza_podataka.BazaPodataka();
-            bp.unesiVozilo(vozilo);
-            vozila.Add(vozilo);
+            if (vozilo.IsValid)
+            {
+                bp.unesiVozilo(vozilo);
+                vozila.Add(vozilo);
+            }
         }
 
         private Vozilo voziloZaBrisanje;

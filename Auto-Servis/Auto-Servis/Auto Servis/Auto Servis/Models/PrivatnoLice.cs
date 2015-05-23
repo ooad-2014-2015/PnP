@@ -24,6 +24,14 @@ namespace Auto_Servis.Models
             return id + " " + base.ToString();
         }
 
+        private string prikaz;
+
+        public string Prikaz
+        {
+            get { return ToString(); }
+            set { prikaz = value; OnPropertyChanged("Prikaz"); }
+        }
+
         public PrivatnoLice() : base() { }
     }
 }

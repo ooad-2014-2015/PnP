@@ -4,6 +4,36 @@
         Title="Unos Vozila" Height="445.134" Width="447.763">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="b2v" />
+            <ControlTemplate x:Key="ErrorTemplate">
+                <DockPanel LastChildFill="True">
+                    <Border BorderBrush="Red" BorderThickness="1">
+                        <AdornedElementPlaceholder />
+                    </Border>
+                </DockPanel>
+            </ControlTemplate>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="DatePicker">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
     <Grid Margin="0,22,3.6,3.2">
         <Grid.ColumnDefinitions>
@@ -31,16 +61,16 @@
                         <Label x:Name="proizvodjacLabel" Content="Proizvodjac:" HorizontalAlignment="Left" Margin="22.2,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.173,0.645" Width="72" Grid.Column="1" Height="26"/>
                         <Label x:Name="godProizLabel" Content="Godina proizvodnje:" HorizontalAlignment="Left" Margin="22.2,135,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.231,0.577" Width="117" Grid.Column="1" Height="26"/>
 
-                        <DatePicker HorizontalAlignment="Left" Margin="150.2,137,0,0" VerticalAlignment="Top" Width="186" SelectedDate="{Binding Vozilo.GodinaProizvodnje, Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" IsDropDownOpen="True" Text="Odaberite datum" Grid.Column="1" Grid.ColumnSpan="2" Height="24"/>
+                        <DatePicker HorizontalAlignment="Left" Margin="150.2,137,0,0" VerticalAlignment="Top" Width="186" SelectedDate="{Binding Vozilo.GodinaProizvodnje, Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Text="Odaberite datum" Grid.Column="1" Grid.ColumnSpan="2" Height="24"/>
                         <Button Content="Potvrdi" HorizontalAlignment="Left" Margin="150,288,0,0" VerticalAlignment="Top" Width="113" Height="35" Command="{Binding DodajVozilo}" Grid.Column="1" Grid.ColumnSpan="2"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="150.2,34,0,0" TextWrapping="Wrap" Text="{Binding Vozilo.BrojTablica, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="186" RenderTransformOrigin="0.308,1.391" Grid.Column="1" Grid.ColumnSpan="2"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="150.2,82,0,0" VerticalAlignment="Top" Width="186" ItemsSource="{Binding Vozilo.Proizvodjaci}"  SelectedValue="{Binding Vozilo.Proizvodjac}" Grid.Column="1" Grid.ColumnSpan="2" Height="22"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="150.2,34,0,0" TextWrapping="Wrap" Text="{Binding Vozilo.BrojTablica, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" VerticalAlignment="Top" Width="186" RenderTransformOrigin="0.308,1.391" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="150.2,82,0,0" VerticalAlignment="Top" Width="186" ItemsSource="{Binding Vozilo.Proizvodjaci}"  SelectedValue="{Binding Vozilo.Proizvodjac, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Grid.Column="1" Grid.ColumnSpan="2" Height="22"/>
                         <Label Content="Vlasnik:" Grid.Column="1" HorizontalAlignment="Left" Margin="90,230,0,0" VerticalAlignment="Top"/>
-                        <ComboBox Name="PrivatniComboBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="150,230,0,0" VerticalAlignment="Top" Width="186" Visibility="{Binding IsChecked,ElementName=PLRadioButton,Converter={StaticResource b2v}}" ItemsSource="{Binding VlasniciPrivatni}" DisplayMemberPath="Id" SelectedValue="{Binding Vozilo.VlasnikPrivatni}"/>
+                        <ComboBox Name="PrivatniComboBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="150,230,0,0" VerticalAlignment="Top" Width="186" Visibility="{Binding IsChecked,ElementName=PLRadioButton,Converter={StaticResource b2v}}" ItemsSource="{Binding VlasniciPrivatni}" DisplayMemberPath="Prikaz" SelectedValue="{Binding Vozilo.VlasnikPrivatni}"/>
                         <RadioButton Name="PLRadioButton" Content="Privatno Lice" Grid.Column="1" HorizontalAlignment="Left" Margin="153,189,0,0" VerticalAlignment="Top" />
                         <RadioButton Name="SLRadioButton" Grid.ColumnSpan="2" Content="Službeno Lice" Grid.Column="1" HorizontalAlignment="Left" Margin="245,189,0,0" VerticalAlignment="Top"/>
                         <Label Content="Tip Vlasnika:" Grid.Column="1" HorizontalAlignment="Left" Margin="64,183,0,0" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="SluzbeniComboBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="150,230,0,0" VerticalAlignment="Top" Width="186" Visibility="{Binding IsChecked,ElementName=SLRadioButton,Converter={StaticResource b2v}}" ItemsSource="{Binding VlasniciSluzbeni}" DisplayMemberPath="IdFirme" SelectedValue="{Binding Vozilo.VlasnikSluzbeni}"/>
+                        <ComboBox x:Name="SluzbeniComboBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="150,230,0,0" VerticalAlignment="Top" Width="186" Visibility="{Binding IsChecked,ElementName=SLRadioButton,Converter={StaticResource b2v}}" ItemsSource="{Binding VlasniciSluzbeni}" DisplayMemberPath="Prikaz" SelectedValue="{Binding Vozilo.VlasnikSluzbeni}"/>
                     </Grid>
                 </Grid>
             </TabItem>

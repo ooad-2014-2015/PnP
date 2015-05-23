@@ -35,5 +35,11 @@ namespace Auto_Servis
             var f = new Auto_Servis.View.FormaKlijent();
             f.Show();
         }
+
+        private void popravkaButton_Click(object sender, RoutedEventArgs e)
+        {
+            var f = new Auto_Servis.View.FormaPopravka();
+            f.Show();
+        }
     }
 }

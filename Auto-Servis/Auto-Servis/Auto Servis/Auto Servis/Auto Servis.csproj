@@ -62,10 +62,14 @@
     <Compile Include="ViewModel\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\PopravkaViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\VoziloViewModel.cs" />
     <Compile Include="View\FormaKlijent.xaml.cs">
       <DependentUpon>FormaKlijent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormaPopravka.xaml.cs">
+      <DependentUpon>FormaPopravka.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FormaVozilo.xaml.cs">
       <DependentUpon>FormaVozilo.xaml</DependentUpon>
@@ -83,6 +87,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FormaKlijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FormaPopravka.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,6 +141,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Client.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Wrench.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

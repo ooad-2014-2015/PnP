@@ -43,6 +43,11 @@ namespace Auto_Servis.Models
             set { kolicina = value; OnPropertyChanged("Kolicina"); }
         }
 
+        public override string ToString()
+        {
+            return "Naziv:" + naziv + " Cijena:" + cijena + " Kolicina:" + kolicina;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {

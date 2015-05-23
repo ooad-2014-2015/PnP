@@ -60,14 +60,20 @@ namespace Auto_Servis.ViewModel
 
         public void unosPrivatnogLica(object parameter)
         {
-            baza.unesiPrivatnoLice(pL);
-            privatnaLica.Add(pL);
+            if (pL.IsValid)
+            {
+                baza.unesiPrivatnoLice(pL);
+                privatnaLica.Add(pL);
+            }
         }
 
         public void unosSluzbenogLica(object parameter)
         {
-            baza.unesiSluzbenoLice(sL);
-            sluzbenaLica.Add(sL);
+            if (sL.IsValid)
+            {
+                baza.unesiSluzbenoLice(sL);
+                sluzbenaLica.Add(sL);
+            }
         }
 
         public PrivatnoLice selektovanoPL { get; set; }
