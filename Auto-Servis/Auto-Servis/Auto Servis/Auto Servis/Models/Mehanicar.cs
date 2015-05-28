@@ -2,18 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Auto_Servis.Models
 {
-    public class Mehanicar
+    public class Mehanicar : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         private int id;
 
         public int Id
         {
             get { return id; }
-            set { id = value; }
+            set { id = value; OnPropertyChanged("Id"); }
         }
 
         private string ime;
@@ -21,7 +32,7 @@ namespace Auto_Servis.Models
         public string Ime
         {
             get { return ime; }
-            set { ime = value; }
+            set { ime = value; OnPropertyChanged("Ime"); }
         }
 
         private string prezime;
@@ -29,26 +40,42 @@ namespace Auto_Servis.Models
         public string Prezime
         {
             get { return prezime; }
-            set { prezime = value; }
+            set { prezime = value; OnPropertyChanged("Prezime"); }
         }
 
-        public enum TipoviMehanicara { elektricar, limar, serviser, lakirer };
+        private List<string> tipovi;
+        public List<string> Tipovi
+        {
+            get { return tipovi; }
+            set { tipovi = value; }
+        }
 
-        public TipoviMehanicara tip;
-
-        public TipoviMehanicara Tip
+        private string tip;
+        public string Tip
         {
             get { return tip; }
-            set { tip = value; }
+            set { tip = value; OnPropertyChanged("Tip"); }
         }
 
-        Popravka popravka;
-        internal Popravka Popravka
+        private string prikaz;
+        public string Prikaz
         {
-            get { return popravka; }
-            set { popravka = value; }
+            get { return id.ToString() + " " + ime + " " + prezime + " " + tip; }
+            set { prikaz = value; }
         }
 
-        public Mehanicar() { }
+        public override string ToString()
+        {
+            return id.ToString() + " " + ime + " " + prezime + " " + tip;
+        }
+
+        public Mehanicar()
+        {
+            tipovi = new List<string>();
+            tipovi.Add("Elektricar");
+            tipovi.Add("Limar");
+            tipovi.Add("Serviser");
+            tipovi.Add("Lakirer");
+        }
     }
 }

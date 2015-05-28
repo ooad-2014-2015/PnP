@@ -150,7 +150,7 @@ namespace Auto_Servis.Baza_podataka
                 connect();
                 MySqlCommand insertUpit = new MySqlCommand();
                 insertUpit.Connection = connection;
-                insertUpit.CommandText = "insert into popravke values (@id,@cijena,@tipPopravke,@datumPrijemaZahtjeva,@vozilo_id,@dijelovi,@datumZavrsetka)";
+                insertUpit.CommandText = "insert into popravke values (@id,@cijena,@tipPopravke,@datumPrijemaZahtjeva,@vozilo_id,@dijelovi,@datumZavrsetka,@mehanicar_id)";
                 insertUpit.Parameters.AddWithValue("@id", @p.Id);
                 insertUpit.Parameters.AddWithValue("@cijena", @p.Cijena);
                 insertUpit.Parameters.AddWithValue("@tipPopravke", @p.TipPopravke);
@@ -158,6 +158,7 @@ namespace Auto_Servis.Baza_podataka
                 insertUpit.Parameters.AddWithValue("@vozilo_id", @p.Vozilo.Id);
                 insertUpit.Parameters.AddWithValue("@dijelovi", @p.Parts);
                 insertUpit.Parameters.AddWithValue("@datumZavrsetka", DateTime.Now);
+                insertUpit.Parameters.AddWithValue("@mehanicar_id", @p.Mehanicar.Id);
                 insertUpit.ExecuteNonQuery();
                 return true;
             }
@@ -370,7 +371,7 @@ namespace Auto_Servis.Baza_podataka
                     m.Id = r.GetInt32("id");
                     m.Ime = r.GetString("ime");
                     m.Prezime = r.GetString("prezime");
-                    //m.Tip = (Models.Mehanicar.TipoviMehanicara)r.GetInt32("tip");
+                    m.Tip = r.GetString("tip"); ;
                     mehanicari.Add(m);
                 }
                 return mehanicari;
@@ -389,6 +390,7 @@ namespace Auto_Servis.Baza_podataka
             try
             {
                 ObservableCollection<Models.Vozilo> vozila = this.dajVozila();
+                ObservableCollection<Models.Mehanicar> mehanicari = this.dajMehanicare();
                 connect();
                 MySqlCommand selectUpit = new MySqlCommand();
                 selectUpit.Connection = connection;
@@ -415,6 +417,18 @@ namespace Auto_Servis.Baza_podataka
                     }
                     p.Parts = r.GetString("dijelovi");
                     p.DatumZavrsetkaRadova = r.GetDateTime("datumZavrsetka");
+                    foreach (Models.Mehanicar m in mehanicari)
+                    {
+                        if (!r.IsDBNull(r.GetOrdinal("mehanicar_id")))
+                        {
+                            if (m.Id == Convert.ToInt32(r["mehanicar_id"]))
+                            {
+                                p.Mehanicar = m; break;
+                            }
+                            else p.Mehanicar = null;
+                        }
+                        else continue;
+                    }
                     popravke.Add(p);
                 }
                 return popravke;
@@ -701,6 +715,48 @@ namespace Auto_Servis.Baza_podataka
                 deleteUpit.CommandText = "delete from zahtjevi where id = @id;";
                 deleteUpit.Parameters.AddWithValue("@id", z.Id);
                 deleteUpit.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception)
+            {
+                connection.Close();
+                return false;
+            }
+        }
+
+        //
+
+        public bool updatePopravke(Models.Popravka popravka)
+        {
+            try
+            {
+                connect();
+                MySqlCommand setUpit = new MySqlCommand();
+                setUpit.Connection = connection;
+                setUpit.CommandText = "update popravke set datumZavrsetka = @datumZavrsetkaRadova where id = @id;";
+                setUpit.Parameters.AddWithValue("@id", popravka.Id);
+                setUpit.Parameters.AddWithValue("@datumZavrsetkaRadova", popravka.DatumZavrsetkaRadova);
+                setUpit.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception)
+            {
+                connection.Close();
+                return false; 
+            }
+        }
+
+        public bool updateDijela(Models.Dio dio)
+        {
+            try
+            {
+                connect();
+                MySqlCommand setUpit = new MySqlCommand();
+                setUpit.Connection = connection;
+                setUpit.CommandText = "update dijelovi set kolicina = @kolicina where id = @id;";
+                setUpit.Parameters.AddWithValue("@id", dio.Id);
+                setUpit.Parameters.AddWithValue("@kolicina", dio.Kolicina);
+                setUpit.ExecuteNonQuery();
                 return true;
             }
             catch (Exception)

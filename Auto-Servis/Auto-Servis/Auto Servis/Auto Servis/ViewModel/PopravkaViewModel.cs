@@ -17,7 +17,7 @@ namespace Auto_Servis.ViewModel
         public ICommand DodajPopravku { get; set; }
         public ICommand UkloniPopravku { get; set; }
         public ICommand DodajDio { get; set; }
-        public ICommand Potvrdi { get; set; }
+        public ICommand PromijeniPodatke { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
@@ -32,7 +32,7 @@ namespace Auto_Servis.ViewModel
         public Popravka Popravka
         {
             get { return popravka; }
-            set { popravka = value; }
+            set { popravka = value; OnPropertyChanged("Popravka"); }
         }
 
         private Popravka selektovanaPopravka;
@@ -61,8 +61,12 @@ namespace Auto_Servis.ViewModel
         public void dodajPopravku(object parameter)
         {
             foreach (Popravka p in popravke) if (p == popravka) return;
-            baza.unesiPopravku(popravka);
-            popravke.Add(popravka);
+            if (popravka.IsValid)
+            {
+                baza.unesiPopravku(popravka);
+                popravke.Add(popravka);
+            }
+            else MessageBox.Show("Niste unijeli ispravne podatke");
         }
 
         public void ukloniPopravku(object parameter)
@@ -85,6 +89,14 @@ namespace Auto_Servis.ViewModel
             set { dioZaDodati = value; OnPropertyChanged("DioZaDodati"); }
         }
 
+
+        private ObservableCollection<Mehanicar> mehanicari;
+        public ObservableCollection<Mehanicar> Mehanicari
+        {
+            get { return mehanicari; }
+            set { mehanicari = value; OnPropertyChanged("Mehanicari"); }
+        }
+
         public void dodajDio(object parameter)
         {
             popravka.Dijelovi.Add(dioZaDodati);
@@ -92,10 +104,10 @@ namespace Auto_Servis.ViewModel
             popravka.Parts += "\n";
         }
 
-        public void potvrdi(object parameter)
+        public void promijeniPodatke(object parameter)
         {
-            baza.unesiPopravku(selektovanaPopravka);
-            popravke = baza.dajPopravke();
+            baza.updatePopravke(selektovanaPopravka);
+            MessageBox.Show("Postavili ste datum zavrsetka radova!");
         }
 
         public PopravkaViewModel()
@@ -104,7 +116,7 @@ namespace Auto_Servis.ViewModel
             DodajPopravku = new RelayCommand(dodajPopravku);
             UkloniPopravku = new RelayCommand(ukloniPopravku);
             DodajDio = new RelayCommand(dodajDio);
-            Potvrdi = new RelayCommand(potvrdi);
+            PromijeniPodatke = new RelayCommand(promijeniPodatke);
             popravka = new Popravka();
             selektovanaPopravka = new Popravka();
             popravke = new ObservableCollection<Popravka>();
@@ -114,6 +126,9 @@ namespace Auto_Servis.ViewModel
             dijelovi = new ObservableCollection<Dio>();
             dijelovi = baza.dajDijelove();
             dioZaDodati = new Dio();
+            mehanicari = new ObservableCollection<Mehanicar>();
+            mehanicari = baza.dajMehanicare();
+            if (mehanicari.Count == 0) MessageBox.Show("Nema nista");
         }
 
     }

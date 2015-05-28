@@ -58,6 +58,7 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\DioViewModel.cs" />
     <Compile Include="ViewModel\KlijentViewModel.cs" />
     <Compile Include="ViewModel\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -65,6 +66,9 @@
     <Compile Include="ViewModel\PopravkaViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\VoziloViewModel.cs" />
+    <Compile Include="View\FormaDio.xaml.cs">
+      <DependentUpon>FormaDio.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FormaKlijent.xaml.cs">
       <DependentUpon>FormaKlijent.xaml</DependentUpon>
     </Compile>
@@ -83,6 +87,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewModel\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FormaDio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,6 +152,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Wrench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="simple-tech.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

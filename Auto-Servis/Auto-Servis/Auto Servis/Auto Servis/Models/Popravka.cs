@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Auto_Servis.Models
 {
-    public class Popravka : INotifyPropertyChanged
+    public class Popravka : INotifyPropertyChanged, IDataErrorInfo
     {
         public Popravka()
         {
@@ -110,6 +110,89 @@ namespace Auto_Servis.Models
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (string property in validateProperties)
+                {
+                    if (getValidationError(property) != null)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+
+        static readonly string[] validateProperties =
+        {
+            "Cijena","DatumPrijemaZahtjeva","TipPopravke","Vozilo","Mehanicar"
+        };
+
+        string IDataErrorInfo.Error
+        {
+            get { return null; }
+        }
+        string IDataErrorInfo.this[string propertyName]
+        {
+            get { return getValidationError(propertyName); }
+        }
+
+        string getValidationError(string propertyName)
+        {
+            string error = null;
+            switch (propertyName)
+            {
+                case "Cijena":
+                    error = validirajCijenu();
+                    break;
+                case "TipPopravke":
+                    error = validirajTip();
+                    break;
+                case "DatumPrijemaZahtjeva":
+                    error = validirajDatumPrijema();
+                    break;
+                case "Vozilo":
+                    error = validirajVozilo();
+                    break;
+                case "Mehanicar":
+                    error = validirajMehanicara();
+                    break;
+            }
+            return error;
+        }
+
+        private string validirajCijenu()
+        {
+            if (cijena <= 0) return "Cijena mora biti veca od 0!";
+            return null;
+        }
+
+        private string validirajTip()
+        {
+            if (String.IsNullOrEmpty(tipPopravke)) return "Morate unijeti tip popravke!";
+            return null;
+        }
+
+        private string validirajDatumPrijema()
+        {
+            if (datumPrijemaZahtjeva >= DateTime.Now) return "Morate unijeti datum u proslosti!";
+            return null;
+        }
+
+        private string validirajVozilo()
+        {
+            if (Vozilo == null) return "Morate odabrati vozilo!";
+            return null;
+        }
+
+        private string validirajMehanicara()
+        {
+            if (Mehanicar == null) return "Morate odabrati mehanicara";
+            return null;
         }
     }
 }
