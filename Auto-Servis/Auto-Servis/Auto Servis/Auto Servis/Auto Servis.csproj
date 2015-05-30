@@ -60,10 +60,12 @@
     </Compile>
     <Compile Include="ViewModel\DioViewModel.cs" />
     <Compile Include="ViewModel\KlijentViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\PopravkaViewModel.cs" />
+    <Compile Include="ViewModel\RacunViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\VoziloViewModel.cs" />
     <Compile Include="View\FormaDio.xaml.cs">
@@ -74,6 +76,9 @@
     </Compile>
     <Compile Include="View\FormaPopravka.xaml.cs">
       <DependentUpon>FormaPopravka.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormaRacun.xaml.cs">
+      <DependentUpon>FormaRacun.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FormaVozilo.xaml.cs">
       <DependentUpon>FormaVozilo.xaml</DependentUpon>
@@ -99,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FormaPopravka.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FormaRacun.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="simple-tech.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="paper.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -28,6 +28,7 @@ namespace Auto_Servis.View
             InitializeComponent();
             VoziloViewModel vViewModel = new VoziloViewModel();
             DataContext = vViewModel;
+            vViewModel.FVozilo = this;
             listBox.DataContext = vViewModel;
             listBox.SetBinding(ItemsControl.ItemsSourceProperty, new Binding("Vozila"));
         }

@@ -9,11 +9,18 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows;
+using Auto_Servis.View;
 
 namespace Auto_Servis.ViewModel
 {
     public class KlijentViewModel : INotifyPropertyChanged
     {
+        private FormaKlijent fKlijent;
+        public FormaKlijent FKlijent
+        {
+            get { return fKlijent; }
+            set { fKlijent = value; }
+        }
         public ICommand UnosPrivatnogLica { get; set; }
         public ICommand BrisanjePrivatnogLica { get; set; }
         public ICommand UnosSluzbenogLica { get; set; }
@@ -64,6 +71,12 @@ namespace Auto_Servis.ViewModel
             {
                 baza.unesiPrivatnoLice(pL);
                 privatnaLica.Add(pL);
+                if (MessageBoxResult.OK == MessageBox.Show("Unijeli ste privatno lice"))
+                {
+                    fKlijent.Close();
+                    FormaKlijent Nova = new FormaKlijent();
+                    Nova.Show();
+                }
             }
         }
 
@@ -73,6 +86,12 @@ namespace Auto_Servis.ViewModel
             {
                 baza.unesiSluzbenoLice(sL);
                 sluzbenaLica.Add(sL);
+                if (MessageBoxResult.OK == MessageBox.Show("Unijeli ste sluzbeno lice"))
+                {
+                    fKlijent.Close();
+                    FormaKlijent Nova = new FormaKlijent();
+                    Nova.Show();
+                }
             }
         }
 

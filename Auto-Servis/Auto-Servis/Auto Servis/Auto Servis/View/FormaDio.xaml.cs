@@ -24,6 +24,7 @@ namespace Auto_Servis.View
         {
             InitializeComponent();
             DioViewModel dViewModel = new DioViewModel();
+            dViewModel.FDio = this;
             DataContext = dViewModel;
             dijeloviDataGrid.DataContext = dViewModel;
             dijeloviDataGrid.SetBinding(ItemsControl.ItemsSourceProperty, new Binding("Dijelovi"));

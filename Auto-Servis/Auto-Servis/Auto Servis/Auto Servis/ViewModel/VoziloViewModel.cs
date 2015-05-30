@@ -8,11 +8,19 @@ using System.Windows.Input;
 using System.Windows;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using Auto_Servis.View;
 
 namespace Auto_Servis.ViewModel
 {
     class VoziloViewModel : INotifyPropertyChanged
     {
+        private FormaVozilo fVozilo;
+        public FormaVozilo FVozilo
+        {
+            get { return fVozilo; }
+            set { fVozilo = value; }
+        }
+        
         public ICommand OdabirVozila { get; set; }
         public ICommand DodajVozilo { get; set; }
         public ICommand ObrisiVozilo { get; set; }
@@ -76,6 +84,12 @@ namespace Auto_Servis.ViewModel
             {
                 bp.unesiVozilo(vozilo);
                 vozila.Add(vozilo);
+                if (MessageBoxResult.OK == MessageBox.Show("Unijeli ste vozilo"))
+                {
+                    fVozilo.Close();
+                    FormaVozilo Nova = new FormaVozilo();
+                    Nova.Show();
+                }
             }
         }
 

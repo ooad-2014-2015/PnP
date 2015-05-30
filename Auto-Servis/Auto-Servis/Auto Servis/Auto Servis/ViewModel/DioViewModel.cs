@@ -8,11 +8,19 @@ using System.Windows.Input;
 using System.Windows;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using Auto_Servis.View;
 
 namespace Auto_Servis.ViewModel
 {
     public class DioViewModel : INotifyPropertyChanged
     {
+        private FormaDio fDio;
+        public FormaDio FDio
+        {
+            get { return fDio; }
+            set { fDio = value; }
+        }
+
         public ICommand Dodaj { get; set; }
         public ICommand Ukloni { get; set; }
         public ICommand AzurirajKolicinu { get; set; }
@@ -68,6 +76,12 @@ namespace Auto_Servis.ViewModel
             {
                 baza.unesiDio(dio);
                 dijelovi.Add(dio);
+                if (MessageBoxResult.OK == MessageBox.Show("Unijeli ste dio"))
+                {
+                    fDio.Close();
+                    FormaDio Nova = new FormaDio();
+                    Nova.Show();
+                }
             }
             else MessageBox.Show("Niste unijeli ispravne podatke!");
         }

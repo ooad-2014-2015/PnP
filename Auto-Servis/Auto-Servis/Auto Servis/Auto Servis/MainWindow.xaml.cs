@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Auto_Servis.ViewModel;
 
 namespace Auto_Servis
 {
@@ -22,30 +23,7 @@ namespace Auto_Servis
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var f = new Auto_Servis.View.FormaVozilo();
-            f.Show();
-        }
-
-        private void klijentButton_Click(object sender, RoutedEventArgs e)
-        {
-            var f = new Auto_Servis.View.FormaKlijent();
-            f.Show();
-        }
-
-        private void popravkaButton_Click(object sender, RoutedEventArgs e)
-        {
-            var f = new Auto_Servis.View.FormaPopravka();
-            f.Show();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var f = new Auto_Servis.View.FormaDio();
-            f.Show();
+            DataContext = new MainViewModel();
         }
     }
 }

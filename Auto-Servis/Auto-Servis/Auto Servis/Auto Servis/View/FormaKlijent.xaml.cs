@@ -25,6 +25,7 @@ namespace Auto_Servis.View
             InitializeComponent();
             KlijentViewModel kViewModel = new KlijentViewModel();
             DataContext = kViewModel;
+            kViewModel.FKlijent = this;
             PLListBox.DataContext = kViewModel;
             PLListBox.SetBinding(ItemsControl.ItemsSourceProperty, new Binding("PrivatnaLica"));
             SLListBox.DataContext = kViewModel;

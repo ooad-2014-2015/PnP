@@ -16,18 +16,18 @@ using Auto_Servis.ViewModel;
 namespace Auto_Servis.View
 {
     /// <summary>
-    /// Interaction logic for FormaPopravka.xaml
+    /// Interaction logic for FormaRacun.xaml
     /// </summary>
-    public partial class FormaPopravka : Window
+    public partial class FormaRacun : Window
     {
-        public FormaPopravka()
+        public FormaRacun()
         {
             InitializeComponent();
-            PopravkaViewModel pViewModel = new PopravkaViewModel();
-            DataContext = pViewModel;
-            pViewModel.FPopravka = this;
-            popravkeDataGrid.DataContext = pViewModel;
-            popravkeDataGrid.SetBinding(ItemsControl.ItemsSourceProperty, new Binding("Popravke"));
+            RacunViewModel rViewModel = new RacunViewModel();
+            DataContext = rViewModel;
+            rViewModel.FRacun = this;
+            racuniDataGrid.DataContext = rViewModel;
+            racuniDataGrid.SetBinding(ItemsControl.ItemsSourceProperty, new Binding("Racuni"));
         }
     }
 }

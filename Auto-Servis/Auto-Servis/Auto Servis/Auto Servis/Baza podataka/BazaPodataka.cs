@@ -176,10 +176,11 @@ namespace Auto_Servis.Baza_podataka
                 connect();
                 MySqlCommand insertUpit = new MySqlCommand();
                 insertUpit.Connection = connection;
-                insertUpit.CommandText = "insert into racuni values (@id,@ukupnaCijena,@datumIzdavanja)";
+                insertUpit.CommandText = "insert into racuni values (@id,@ukupnaCijena,@datumIzdavanja,@popravka_id)";
                 insertUpit.Parameters.AddWithValue("@id", @r.Id);
                 insertUpit.Parameters.AddWithValue("@ukupnaCijena", @r.UkupnaCijena);
                 insertUpit.Parameters.AddWithValue("@datumIzdavanja", @r.DatumIzdavanja);
+                insertUpit.Parameters.AddWithValue("@popravka_id", @r.Popravka.Id);
                 insertUpit.ExecuteNonQuery();
                 return true;
             }
@@ -446,6 +447,7 @@ namespace Auto_Servis.Baza_podataka
             ObservableCollection<Models.Racun> racuni = new ObservableCollection<Models.Racun>();
             try
             {
+                ObservableCollection<Models.Popravka> popravke = this.dajPopravke();
                 connect();
                 MySqlCommand selectUpit = new MySqlCommand();
                 selectUpit.Connection = connection;
@@ -455,8 +457,20 @@ namespace Auto_Servis.Baza_podataka
                 {
                     Models.Racun ra = new Models.Racun();
                     ra.Id = r.GetInt32("id");
-                    ra.UkupnaCijena = r.GetDouble("cijena");
+                    ra.UkupnaCijena = r.GetDouble("ukupnaCijena");
                     ra.DatumIzdavanja = r.GetDateTime("datumIzdavanja");
+                    foreach (Models.Popravka p in popravke)
+                    {
+                        if (!r.IsDBNull(r.GetOrdinal("popravka_id")))
+                        {
+                            if (p.Id == Convert.ToInt32(r["popravka_id"]))
+                            {
+                                ra.Popravka = p; break;
+                            }
+                            else ra.Popravka = null;
+                        }
+                        else continue;
+                    }
                     racuni.Add(ra);
                 }
                 return racuni;

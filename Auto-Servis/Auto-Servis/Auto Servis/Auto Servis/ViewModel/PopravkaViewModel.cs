@@ -9,11 +9,19 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows;
+using Auto_Servis.View;
 
 namespace Auto_Servis.ViewModel
 {
     public class PopravkaViewModel : INotifyPropertyChanged
     {
+        private FormaPopravka fPopravka;
+        public FormaPopravka FPopravka
+        {
+            get { return fPopravka; }
+            set { fPopravka = value; }
+        }
+
         public ICommand DodajPopravku { get; set; }
         public ICommand UkloniPopravku { get; set; }
         public ICommand DodajDio { get; set; }
@@ -65,6 +73,12 @@ namespace Auto_Servis.ViewModel
             {
                 baza.unesiPopravku(popravka);
                 popravke.Add(popravka);
+                if (MessageBoxResult.OK == MessageBox.Show("Unijeli ste popravku"))
+                {
+                    fPopravka.Close();
+                    FormaPopravka Nova = new FormaPopravka();
+                    Nova.Show();
+                }
             }
             else MessageBox.Show("Niste unijeli ispravne podatke");
         }
@@ -128,7 +142,6 @@ namespace Auto_Servis.ViewModel
             dioZaDodati = new Dio();
             mehanicari = new ObservableCollection<Mehanicar>();
             mehanicari = baza.dajMehanicare();
-            if (mehanicari.Count == 0) MessageBox.Show("Nema nista");
         }
 
     }

@@ -103,6 +103,16 @@ namespace Auto_Servis.Models
             return "Popravka:" + id + " " + cijena + " " + datumPrijemaZahtjeva.ToShortDateString() + " Vozilo:" + vozilo.ToString();
         }
 
+        private string prikaz;
+        public string Prikaz
+        {
+            get 
+            { 
+                return tipPopravke + " " + cijena + " " + vozilo.ToString();; 
+            }
+            set { prikaz = value; }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
