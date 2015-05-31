@@ -150,7 +150,7 @@ namespace Auto_Servis.Baza_podataka
                 connect();
                 MySqlCommand insertUpit = new MySqlCommand();
                 insertUpit.Connection = connection;
-                insertUpit.CommandText = "insert into popravke values (@id,@cijena,@tipPopravke,@datumPrijemaZahtjeva,@vozilo_id,@dijelovi,@datumZavrsetka,@mehanicar_id)";
+                insertUpit.CommandText = "insert into popravke values (@id,@cijena,@tipPopravke,@datumPrijemaZahtjeva,@vozilo_id,@dijelovi,@datumZavrsetka,@mehanicar_id,@zavrsena)";
                 insertUpit.Parameters.AddWithValue("@id", @p.Id);
                 insertUpit.Parameters.AddWithValue("@cijena", @p.Cijena);
                 insertUpit.Parameters.AddWithValue("@tipPopravke", @p.TipPopravke);
@@ -159,6 +159,7 @@ namespace Auto_Servis.Baza_podataka
                 insertUpit.Parameters.AddWithValue("@dijelovi", @p.Parts);
                 insertUpit.Parameters.AddWithValue("@datumZavrsetka", DateTime.Now);
                 insertUpit.Parameters.AddWithValue("@mehanicar_id", @p.Mehanicar.Id);
+                insertUpit.Parameters.AddWithValue("@zavrsena", false);
                 insertUpit.ExecuteNonQuery();
                 return true;
             }
@@ -430,6 +431,7 @@ namespace Auto_Servis.Baza_podataka
                         }
                         else continue;
                     }
+                    p.Zavrsena = r.GetBoolean("zavrsena");
                     popravke.Add(p);
                 }
                 return popravke;
@@ -747,9 +749,10 @@ namespace Auto_Servis.Baza_podataka
                 connect();
                 MySqlCommand setUpit = new MySqlCommand();
                 setUpit.Connection = connection;
-                setUpit.CommandText = "update popravke set datumZavrsetka = @datumZavrsetkaRadova where id = @id;";
+                setUpit.CommandText = "update popravke set datumZavrsetka = @datumZavrsetkaRadova, zavrsena = @zavrsena where id = @id;";
                 setUpit.Parameters.AddWithValue("@id", popravka.Id);
                 setUpit.Parameters.AddWithValue("@datumZavrsetkaRadova", popravka.DatumZavrsetkaRadova);
+                setUpit.Parameters.AddWithValue("@zavrsena", popravka.Zavrsena);
                 setUpit.ExecuteNonQuery();
                 return true;
             }

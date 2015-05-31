@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Auto_Servis.Models;
 using Auto_Servis.Baza_podataka;
@@ -15,6 +16,7 @@ namespace Auto_Servis.ViewModel
 {
     public class RacunViewModel : INotifyPropertyChanged
     {
+        private static Thread nitUnos, nitBrisanje;
         private FormaRacun fRacun;
         public FormaRacun FRacun
         {
@@ -76,9 +78,10 @@ namespace Auto_Servis.ViewModel
             foreach (Racun r in racuni) if (r == racun) return;
             if (racun.IsValid)
             {
-                baza.unesiRacun(racun);
+                nitUnos = new Thread(() => baza.unesiRacun(racun));
+                nitUnos.IsBackground = true;
+                nitUnos.Start();
                 racuni.Add(racun);
-                //MessageBox.Show(racun.Popravka.Parts);
                 string r = "Datum izdavanja: " + racun.DatumIzdavanja.ToString() + "\n";
                 r += "Popravka: " + racun.Popravka.TipPopravke + " " + racun.Popravka.Cijena + "\nDijelovi: ";
                 r += racun.Popravka.Parts;
@@ -96,7 +99,9 @@ namespace Auto_Servis.ViewModel
 
         private void obrisiRacun(object parameter)
         {
-            baza.obrisiRacun(selektovaniRacun);
+            nitBrisanje = new Thread(() => baza.obrisiRacun(selektovaniRacun));
+            nitBrisanje.IsBackground = true;
+            nitBrisanje.Start();
             racuni.Remove(selektovaniRacun);
         }
 

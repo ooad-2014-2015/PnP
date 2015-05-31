@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Auto_Servis.Models;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
@@ -14,6 +15,7 @@ namespace Auto_Servis.ViewModel
 {
     class VoziloViewModel : INotifyPropertyChanged
     {
+        private static Thread nitUnos, nitBrisanje;
         private FormaVozilo fVozilo;
         public FormaVozilo FVozilo
         {
@@ -82,7 +84,9 @@ namespace Auto_Servis.ViewModel
             Baza_podataka.BazaPodataka bp = new Baza_podataka.BazaPodataka();
             if (vozilo.IsValid)
             {
-                bp.unesiVozilo(vozilo);
+                nitUnos = new Thread(() =>bp.unesiVozilo(vozilo));
+                nitUnos.IsBackground = true;
+                nitUnos.Start();
                 vozila.Add(vozilo);
                 if (MessageBoxResult.OK == MessageBox.Show("Unijeli ste vozilo"))
                 {
@@ -104,7 +108,9 @@ namespace Auto_Servis.ViewModel
         public void obrisiVozilo(object parameter)
         {
             Baza_podataka.BazaPodataka bp = new Baza_podataka.BazaPodataka();
-            bp.obrisiVozilo(voziloZaBrisanje);
+            nitBrisanje = new Thread(() => bp.obrisiVozilo(voziloZaBrisanje));
+            nitBrisanje.IsBackground = true;
+            nitBrisanje.Start();
             vozila.Remove(voziloZaBrisanje);
         }
 

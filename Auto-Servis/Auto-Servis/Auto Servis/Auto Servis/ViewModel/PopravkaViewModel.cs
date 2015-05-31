@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Auto_Servis.Models;
 using Auto_Servis.Baza_podataka;
@@ -15,6 +16,7 @@ namespace Auto_Servis.ViewModel
 {
     public class PopravkaViewModel : INotifyPropertyChanged
     {
+        private static Thread nitUnos, nitBrisanje;
         private FormaPopravka fPopravka;
         public FormaPopravka FPopravka
         {
@@ -71,7 +73,9 @@ namespace Auto_Servis.ViewModel
             foreach (Popravka p in popravke) if (p == popravka) return;
             if (popravka.IsValid)
             {
-                baza.unesiPopravku(popravka);
+                nitUnos = new Thread(() => baza.unesiPopravku(popravka));
+                nitUnos.IsBackground = true;
+                nitUnos.Start();
                 popravke.Add(popravka);
                 if (MessageBoxResult.OK == MessageBox.Show("Unijeli ste popravku"))
                 {
@@ -85,7 +89,9 @@ namespace Auto_Servis.ViewModel
 
         public void ukloniPopravku(object parameter)
         {
-            baza.obrisiPopravku(selektovanaPopravka);
+            nitBrisanje = new Thread(() => baza.obrisiPopravku(selektovanaPopravka));
+            nitBrisanje.IsBackground = true;
+            nitBrisanje.Start();
             popravke.Remove(selektovanaPopravka);
         }
 
@@ -120,6 +126,7 @@ namespace Auto_Servis.ViewModel
 
         public void promijeniPodatke(object parameter)
         {
+            selektovanaPopravka.Zavrsena = true;
             baza.updatePopravke(selektovanaPopravka);
             MessageBox.Show("Postavili ste datum zavrsetka radova!");
         }

@@ -73,7 +73,8 @@
                     <DataGrid Name="popravkeDataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="313" Width="474" AutoGenerateColumns="False" SelectedValue="{Binding SelektovanaPopravka}" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Cijena" Binding="{Binding Cijena}" IsReadOnly="True" />
+                            <DataGridCheckBoxColumn Header="Zavrsena" Binding="{Binding Zavrsena}" IsReadOnly="False"/>
+                            <DataGridTextColumn Header="Cijena" Binding="{Binding Cijena}" IsReadOnly="True" />
                         <DataGridTextColumn Header="Datum prijema zahtjeva" Binding="{Binding DatumPrijemaZahtjeva}" IsReadOnly="True" />
                         <DataGridTextColumn Header="Tip" Binding="{Binding TipPopravke}" IsReadOnly="True" />
                         <DataGridTextColumn Header="Vozilo" Binding="{Binding Vozilo}" IsReadOnly="True" />

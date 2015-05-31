@@ -28,6 +28,13 @@ namespace Auto_Servis.Models
             set { id = value; OnPropertyChanged("Id"); }
         }
 
+        private bool zavrsena;
+        public bool Zavrsena
+        {
+            get { return zavrsena; }
+            set { zavrsena = value; OnPropertyChanged("Zavrsena"); }
+        }
+
         private double cijena;
         public double Cijena
         {

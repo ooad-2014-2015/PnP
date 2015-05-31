@@ -9,11 +9,14 @@ using System.Windows;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Auto_Servis.View;
+using System.Threading;
 
 namespace Auto_Servis.ViewModel
 {
     public class DioViewModel : INotifyPropertyChanged
     {
+        private static Thread nitUnos, nitBrisanje;
+
         private FormaDio fDio;
         public FormaDio FDio
         {
@@ -74,7 +77,9 @@ namespace Auto_Servis.ViewModel
             foreach(Dio d in dijelovi) if (d == dio) return;
             if (dio.IsValid)
             {
-                baza.unesiDio(dio);
+                nitUnos = new Thread(() => baza.unesiDio(dio));
+                nitUnos.IsBackground = true;
+                nitUnos.Start();
                 dijelovi.Add(dio);
                 if (MessageBoxResult.OK == MessageBox.Show("Unijeli ste dio"))
                 {
@@ -88,7 +93,9 @@ namespace Auto_Servis.ViewModel
 
         public void ukloni(object parameter)
         {
-            baza.obrisiDio(selektovaniDio);
+            nitBrisanje = new Thread(() => baza.obrisiDio(selektovaniDio));
+            nitBrisanje.IsBackground = true;
+            nitBrisanje.Start();
             dijelovi.Remove(selektovaniDio);
         }
 

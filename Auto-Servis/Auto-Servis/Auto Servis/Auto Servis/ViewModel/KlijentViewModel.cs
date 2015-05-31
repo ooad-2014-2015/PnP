@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Auto_Servis.Models;
 using Auto_Servis.Baza_podataka;
@@ -15,6 +16,7 @@ namespace Auto_Servis.ViewModel
 {
     public class KlijentViewModel : INotifyPropertyChanged
     {
+        private static Thread nitUnosPrivatno, nitUnosSluzbeno, nitBrisanjePrivatno, nitBrisanjeSluzbeno;
         private FormaKlijent fKlijent;
         public FormaKlijent FKlijent
         {
@@ -69,7 +71,9 @@ namespace Auto_Servis.ViewModel
         {
             if (pL.IsValid)
             {
-                baza.unesiPrivatnoLice(pL);
+                nitUnosPrivatno = new Thread(() => baza.unesiPrivatnoLice(pL));
+                nitUnosPrivatno.IsBackground = true;
+                nitUnosPrivatno.Start();
                 privatnaLica.Add(pL);
                 if (MessageBoxResult.OK == MessageBox.Show("Unijeli ste privatno lice"))
                 {
@@ -84,7 +88,9 @@ namespace Auto_Servis.ViewModel
         {
             if (sL.IsValid)
             {
-                baza.unesiSluzbenoLice(sL);
+                nitUnosSluzbeno = new Thread(() => baza.unesiSluzbenoLice(sL));
+                nitUnosSluzbeno.IsBackground = true;
+                nitUnosSluzbeno.Start();
                 sluzbenaLica.Add(sL);
                 if (MessageBoxResult.OK == MessageBox.Show("Unijeli ste sluzbeno lice"))
                 {
@@ -100,13 +106,18 @@ namespace Auto_Servis.ViewModel
 
         public void brisanjePrivatnogLica(object parameter)
         {
-            baza.obrisiPrivatnoLice(selektovanoPL);
+            nitBrisanjePrivatno = new Thread(() => baza.obrisiPrivatnoLice(selektovanoPL));
+            nitBrisanjePrivatno.IsBackground = true;
+            nitBrisanjePrivatno.Start();
             privatnaLica.Remove(selektovanoPL);
         }
 
         public void brisanjeSluzbenogLica(object parameter)
         {
-            baza.obrisiSluzbenoLice(selektovanoSL);
+           
+            nitBrisanjeSluzbeno = new Thread(() => baza.obrisiSluzbenoLice(selektovanoSL));
+            nitBrisanjeSluzbeno.IsBackground = true;
+            nitBrisanjeSluzbeno.Start();
             sluzbenaLica.Remove(selektovanoSL);
         }
 
