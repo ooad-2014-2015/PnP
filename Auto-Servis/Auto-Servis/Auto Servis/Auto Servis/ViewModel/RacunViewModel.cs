@@ -10,13 +10,15 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows;
+using System.IO;
 using Auto_Servis.View;
+using System.Diagnostics;
 
 namespace Auto_Servis.ViewModel 
 {
     public class RacunViewModel : INotifyPropertyChanged
     {
-        private static Thread nitUnos, nitBrisanje;
+        private static Thread nitUnos, nitBrisanje, nitPrintanje;
         private FormaRacun fRacun;
         public FormaRacun FRacun
         {
@@ -35,6 +37,7 @@ namespace Auto_Servis.ViewModel
 
         public ICommand GenerisiRacun { get; set; }
         public ICommand ObrisiRacun { get; set; }
+        public ICommand IsprintajRacun { get; set; }
 
         private Baza_podataka.BazaPodataka baza;
         public Baza_podataka.BazaPodataka Baza
@@ -86,14 +89,8 @@ namespace Auto_Servis.ViewModel
                 r += "Popravka: " + racun.Popravka.TipPopravke + " " + racun.Popravka.Cijena + "\nDijelovi: ";
                 r += racun.Popravka.Parts;
                 r += "---------------------------------------------\n";
-                r += "Ukupno: " + racun.UkupnaCijena + " KM";
+                r += "Ukupno: " + racun.UkupnaCijena + " KM\n";
                 racun.Prikaz = r;
-                if (MessageBoxResult.OK == MessageBox.Show("Generisali ste racun!"))
-                {
-                    fRacun.Close();
-                    FormaRacun Nova = new FormaRacun();
-                    Nova.Show();
-                }
             }
         }
 
@@ -105,11 +102,42 @@ namespace Auto_Servis.ViewModel
             racuni.Remove(selektovaniRacun);
         }
 
+        private void isprintajRacun(object parameter)
+        {
+            FileStream file = new FileStream("racun.txt", FileMode.Create);
+            StreamWriter pisac = new StreamWriter(file);
+            int j = 0, k = 0;
+            for (int i = 0; i < racun.Prikaz.Length; i++)
+            {
+                if (racun.Prikaz[i] == '\n')
+                {
+                    j = i;
+                    pisac.WriteLine(racun.Prikaz.Substring(k, j - k));
+                    k = j;
+                }
+            }
+            pisac.Flush();
+            pisac.Close();
+            file.Close();
+
+            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(@"racun.txt");
+            psi.Verb = "PRINT";
+            Process.Start(psi);
+
+            if (MessageBoxResult.OK == MessageBox.Show("Isprintali ste racun!"))
+            {
+                fRacun.Close();
+                FormaRacun Nova = new FormaRacun();
+                Nova.Show();
+            }
+        }
+
         public RacunViewModel()
         {
             baza = new BazaPodataka();
             GenerisiRacun = new RelayCommand(generisiRacun);
             ObrisiRacun = new RelayCommand(obrisiRacun);
+            IsprintajRacun = new RelayCommand(isprintajRacun);
             racun = new Racun();
             selektovaniRacun = new Racun();
             racuni = new ObservableCollection<Racun>();
