@@ -1,0 +1,9 @@
+﻿<Window x:Class="Auto_Servis.View.FormaHelp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FormaHelp" Height="468" Width="527.2">
+    <Grid>
+        <DocumentViewer Name="doc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,-0.2,0" Document="{Binding Help, UpdateSourceTrigger=PropertyChanged}" Zoom="60"/>
+
+    </Grid>
+</Window>

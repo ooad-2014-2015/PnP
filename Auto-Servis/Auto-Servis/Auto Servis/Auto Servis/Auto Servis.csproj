@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -59,6 +60,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DioViewModel.cs" />
+    <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="ViewModel\KlijentViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainWindow.xaml.cs">
@@ -70,6 +72,9 @@
     <Compile Include="ViewModel\VoziloViewModel.cs" />
     <Compile Include="View\FormaDio.xaml.cs">
       <DependentUpon>FormaDio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormaHelp.xaml.cs">
+      <DependentUpon>FormaHelp.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FormaKlijent.xaml.cs">
       <DependentUpon>FormaKlijent.xaml</DependentUpon>
@@ -96,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FormaDio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FormaHelp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

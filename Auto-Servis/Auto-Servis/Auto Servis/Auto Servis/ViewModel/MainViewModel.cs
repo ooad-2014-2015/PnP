@@ -20,6 +20,7 @@ namespace Auto_Servis.ViewModel
         public ICommand Popravka { get; set; }
         public ICommand Dio { get; set; }
         public ICommand Racun { get; set; }
+        public ICommand Help { get; set; }
 
         public void vozilo(object parameter)
         {
@@ -51,6 +52,12 @@ namespace Auto_Servis.ViewModel
             f.Show();
         }
 
+        public void help(object parameter)
+        {
+            var f = new FormaHelp();
+            f.Show();
+        }
+
         public MainViewModel()
         {
             Vozilo = new RelayCommand(vozilo);
@@ -58,6 +65,7 @@ namespace Auto_Servis.ViewModel
             Popravka = new RelayCommand(popravka);
             Dio = new RelayCommand(dio);
             Racun = new RelayCommand(racun);
+            Help = new RelayCommand(help);
         }
     }
 }
