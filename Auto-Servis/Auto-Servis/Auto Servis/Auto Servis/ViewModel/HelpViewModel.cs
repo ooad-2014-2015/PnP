@@ -36,8 +36,11 @@ namespace Auto_Servis.ViewModel
 
         public HelpViewModel(Object view)
         {
-            help = new XpsDocument(@"Help.xps", FileAccess.Read);
-            if (help == null) MessageBox.Show("Nije ucitalo");
+            string s = Environment.CurrentDirectory;
+            s = s.Replace("\\bin\\Debug", "");
+            s += @"\Help.xps";
+
+            help = new XpsDocument(s, FileAccess.Read);
             (view as FormaHelp).doc.Document = help.GetFixedDocumentSequence();
         }
 
