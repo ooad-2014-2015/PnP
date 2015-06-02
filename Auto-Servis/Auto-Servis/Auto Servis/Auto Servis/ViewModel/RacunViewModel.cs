@@ -104,7 +104,10 @@ namespace Auto_Servis.ViewModel
 
         private void isprintajRacun(object parameter)
         {
-            FileStream file = new FileStream("racun.txt", FileMode.Create);
+            string s = Environment.CurrentDirectory;
+            s = s.Replace("\\bin\\Debug", "");
+            s += @"\racun.txt";
+            FileStream file = new FileStream(s, FileMode.Create);
             StreamWriter sw = new StreamWriter(file);
             int j = 0, k = 0;
             for (int i = 0; i < racun.Prikaz.Length; i++)
