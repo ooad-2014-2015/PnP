@@ -20,7 +20,7 @@
                     <Button Content="Generiši račun" HorizontalAlignment="Left" Margin="41,244,0,0" VerticalAlignment="Top" Width="95" Command="{Binding GenerisiRacun}"/>
                     <Label HorizontalAlignment="Left" Margin="116,66,0,0" VerticalAlignment="Top" Height="150" Width="238" Content="{Binding Racun.Prikaz, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Content="Račun:" HorizontalAlignment="Left" Margin="41,66,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Isprintaj račun" HorizontalAlignment="Left" Margin="188,244,0,0" VerticalAlignment="Top" Width="109" Command="{Binding IsprintajRacun}"/>
+                    <Button Content=" Isprintaj račun " HorizontalAlignment="Left" Margin="188,244,0,0" VerticalAlignment="Top" Width="109" Command="{Binding IsprintajRacun}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Pregled">

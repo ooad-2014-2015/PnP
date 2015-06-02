@@ -105,19 +105,19 @@ namespace Auto_Servis.ViewModel
         private void isprintajRacun(object parameter)
         {
             FileStream file = new FileStream("racun.txt", FileMode.Create);
-            StreamWriter pisac = new StreamWriter(file);
+            StreamWriter sw = new StreamWriter(file);
             int j = 0, k = 0;
             for (int i = 0; i < racun.Prikaz.Length; i++)
             {
                 if (racun.Prikaz[i] == '\n')
                 {
                     j = i;
-                    pisac.WriteLine(racun.Prikaz.Substring(k, j - k));
+                    sw.WriteLine(racun.Prikaz.Substring(k, j - k));
                     k = j;
                 }
             }
-            pisac.Flush();
-            pisac.Close();
+            sw.Flush();
+            sw.Close();
             file.Close();
 
             System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(@"racun.txt");
