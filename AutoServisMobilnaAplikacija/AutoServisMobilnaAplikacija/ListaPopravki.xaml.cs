@@ -16,7 +16,7 @@ namespace AutoServisMobilnaAplikacija
         public ListaPopravki()
         {
             InitializeComponent();
-            using (ASBazaPodatakaContext db = new ASBazaPodatakaContext(ASBazaPodatakaContext.ConnectionString))
+            using (DatabaseContext db = new DatabaseContext(DatabaseContext.ConnectionString))
             {
                 db.CreateIfNotExists();
 
@@ -33,7 +33,8 @@ namespace AutoServisMobilnaAplikacija
                     popravkeKontrola.vozilo.Text = "Naziv vozila:  " + popravka.Vozilo;
                     popravkeKontrola.dijelovi.Text = "Lista dijelova:  " + popravka.Dijelovi;
                     popravkeKontrola.datumZavrsetka.Text = "Datum zavrsetka popravke:  " + popravka.DatumZavrsetka.ToShortDateString();
-
+                    if (popravka.StatusPopravke == "Nije popravljeno") popravkeKontrola.nijePopravljenoCheckBox.IsChecked = true;
+                    else popravkeKontrola.popravljenoCheckBox.IsChecked = true;
                     p.Header = "Br popravke " + popravka.Id;
                     p.Content = popravkeKontrola;
                     mojPivot.Items.Add(p);

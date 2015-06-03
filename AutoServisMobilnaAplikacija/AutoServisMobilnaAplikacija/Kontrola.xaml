@@ -24,7 +24,7 @@
         <TextBlock x:Name="id" HorizontalAlignment="Left" Margin="30,64,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" TextAlignment="Center"/>
         <TextBlock HorizontalAlignment="Left" Margin="30,328,0,0" TextWrapping="Wrap" Text="StatusPopravke:" VerticalAlignment="Top"/>
         <CheckBox x:Name="popravljenoCheckBox" Content="Popravljeno" HorizontalAlignment="Left" Margin="203,283,0,0" VerticalAlignment="Top" Height="74" Width="241" IsEnabled="False"/>
-        <CheckBox x:Name="nijePopravljenoCheckBox" Content="Nije popravljeno" HorizontalAlignment="Left" Margin="203,328,0,0" VerticalAlignment="Top" Width="241" IsEnabled="False" IsChecked="True"/>
+        <CheckBox x:Name="nijePopravljenoCheckBox" Content="Nije popravljeno" HorizontalAlignment="Left" Margin="203,328,0,0" VerticalAlignment="Top" Width="241" IsEnabled="False"/>
         <Button Content="Označi popravku kao završenu" HorizontalAlignment="Left" Margin="10,542,0,0" VerticalAlignment="Top" Width="434" Click="Button_Click"/>
 
     </Grid>

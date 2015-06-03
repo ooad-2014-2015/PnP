@@ -38,9 +38,11 @@ namespace AutoServisMobilnaAplikacija
         {
             NavigationService.Navigate(new Uri("/ListaPopravki.xaml", UriKind.Relative));
             
+            
         }
 
-}
+}
+
 
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
